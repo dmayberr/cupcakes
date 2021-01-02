@@ -17,7 +17,8 @@ connect_db(app)
 def home_page():
     """Route for a homepage."""
     
-    return render_template("home.html")
+    cupcakes = Cupcake.query.all()
+    return render_template("home.html", cupcakes=cupcakes)
 
 ################################################
 

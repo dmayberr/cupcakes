@@ -6,8 +6,15 @@
 <div class="cupcake-list">
     <h2>Cupcake Inventory</h2>
     <ul>
-        
+        {% for cupcake in cupcakes %}
+        <li>
+            <a href="/">{{ cupcake.flavor }}  </a>
+            <button class="delete-cupcake" data-id="{{ cupcake.id }}">Remove</button>
+        </li>
+        {% endfor %}
     </ul>
+    
+    
 </div> 
 
 {% endblock %}
