@@ -11,6 +11,16 @@ app.config['SQLALCHEMY_ECHO'] = False
 db.init_app(app)
 connect_db(app)
 
+################################################
+
+@app.route('/')
+def home_page():
+    """Route for a homepage."""
+    
+    return render_template("home.html")
+
+################################################
+
 @app.route('/api/cupcakes')
 def get_all_cupcakes():
     """Route to get all the cupcakes."""
