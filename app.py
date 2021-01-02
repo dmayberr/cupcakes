@@ -27,6 +27,7 @@ def get_a_cupcake(id):
 
 @app.route('/api/cupcakes', methods=['POST'])
 def create_new_cupcake():
+    """Route to create a new cupcake and add to the db."""  
     
     new_cupcake = Cupcake(flavor=request.json["flavor"], size=request.json["size"], rating=request.json["rating"], image=request.json["image"])
     db.session.add(new_cupcake)
@@ -34,3 +35,28 @@ def create_new_cupcake():
     
     response_json = jsonify(cupcake=new_cupcake.serialize())
     return (response_json, 201)
+
+@app.route('/api/cupcakes/<int:id>', methods=['PATCH'])
+def edit_cupcake(id):
+    """Route to update/edit cupcake information."""
+    
+    updated_cupcake = Cupcake.query.get_or_404(id)  ### This is a flask method
+    
+    updated_cupcake.flavor = request.json.get("flavor", updated_cupcake.flavor)
+    updated_cupcake.size = request.json.get("size", updated_cupcake.size)
+    updated_cupcake.rating = request.json.get("rating", updated_cupcake.rating)
+    updated_cupcake.image = request.json.get("image", updated_cupcake.image)
+    
+    db.session.commit()
+    return jsonify(cupcake=updated_cupcake.serialize())
+
+@app.route('/api/cupcakes/<int:id>', methods=['DELETE'])
+def delete_cupcake(id):
+    """Route to delete a specific cupcake by id."""
+    
+    cupcake = Cupcake.query.get_or_404(id)
+    
+    db.session.delete(cupcake)
+    db.session.commit()
+    
+    return jsonify(message="Deleted")
