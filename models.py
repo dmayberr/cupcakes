@@ -10,6 +10,7 @@ def connect_db(app):
     
 class Cupcake(db.Model):
     """Cupcake model"""
+    __tablename__ = 'cupcakes'
     
     def __repr__(self):
         u = self
