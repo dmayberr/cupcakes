@@ -40,7 +40,11 @@ def get_a_cupcake(id):
 def create_new_cupcake():
     """Route to create a new cupcake and add to the db."""  
     
-    new_cupcake = Cupcake(flavor=request.json["flavor"], size=request.json["size"], rating=request.json["rating"], image=request.json["image"])
+    new_cupcake = Cupcake(flavor=request.json["flavor"], 
+                          size=request.json["size"], 
+                          rating=request.json["rating"], 
+                          image=request.json["image"])
+    
     db.session.add(new_cupcake)
     db.session.commit()
     
