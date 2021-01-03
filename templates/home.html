@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} Cupcake Home {% endblock %}
 
 {% block content %}
 <div class="cupcake-list">
@@ -8,8 +8,9 @@
     <ul>
         {% for cupcake in cupcakes %}
         <li>
-            <a href="/">{{ cupcake.flavor }}  </a>
-            <button class="delete-cupcake" data-id="{{ cupcake.id }}">Remove</button>
+            <img class="cupcakepic" src="{{cupcake.image}}">
+            {{ cupcake.flavor }} - {{ cupcake.size }} - {{ cupcake.rating }}
+            <span><button class="delete-cupcake" data-id="{{ cupcake.id }}">Remove</button></span>
         </li>
         {% endfor %}
     </ul>

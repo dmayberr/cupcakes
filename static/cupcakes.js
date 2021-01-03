@@ -25,30 +25,16 @@ function getFormData() {
   return newCupcake;
 }
 
-// async function addCupcake() {
-//   const res = await axios.post(`/api/cupcakes`, {
-//     flavor: newCupcake.flavor,
-//     size: newCupcake.size,
-//     rating: newCupcake.rating,
-//     image: newCupcake.image,
-//   });
-//   console.log(res);
-// }
-
 async function addCupcake() {
-  let flavorinput = $("#flavor").data("flavor");
-  let sizeinput = $("#size").data("size");
-  let ratinginput = $("#rating").data("rating");
-  let imageinput = $("#image").data("image");
-  const res = await axios({
-    method: "post",
-    url: `/api/cupcakes`,
-    data: {
-      flavor: flavorinput,
-      size: sizeinput,
-      rating: ratinginput,
-      image: imageinput,
-    },
+  let flavorinput = $("#flavor").val();
+  let sizeinput = $("#size").val();
+  let ratinginput = $("#rating").val();
+  let imageinput = $("#image").val();
+  const res = await axios.post(`http://127.0.0.1:5000/api/cupcakes`, {
+    flavorinput,
+    sizeinput,
+    ratinginput,
+    imageinput,
   });
   console.log(res);
 }
